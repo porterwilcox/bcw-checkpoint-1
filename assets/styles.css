@@ -1,0 +1,41 @@
+/* * {
+    outline: 1px solid red;
+} */
+
+.col-pos {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: space-evenly;
+    justify-content: space-evenly;
+}
+
+.char-pos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.char-icon {
+    font-size: 25em;
+}
+
+.ninja {
+    background-color: black;
+    color: whitesmoke;
+    border-radius: 5%;
+}
+
+
+
+/* MOBILE */
+@media (pointer: coarse) and (hover: none) {
+    .char-pos {
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .char-icon {
+        font-size: 10em;
+    }
+}
