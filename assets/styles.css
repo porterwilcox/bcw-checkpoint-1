@@ -2,8 +2,28 @@
     outline: 1px solid red;
 } */
 
-.col-pos {
+.container-fluid {
     height: 100vh;
+}
+
+.sel-pos {
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#character-selection {
+    height: fit-content;
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 6%;
+}
+
+.both-char-pos {
+    height: 90vh;
     width: 100vw;
     display: flex;
     align-items: space-evenly;
@@ -30,10 +50,6 @@
 
 /* MOBILE */
 @media (pointer: coarse) and (hover: none) {
-    .char-pos {
-        align-items: center;
-        justify-content: center;
-    }
     
     .char-icon {
         font-size: 10em;
