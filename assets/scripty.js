@@ -22,7 +22,7 @@ let compWeapon1Damage = 5;
 let compWeapon2Damage = 10;
 let compHealth = 100;
 let yourHealth = 100;
-let self = 0;
+let yourSelf = 0;
 let bringCompBack;
 
 //FUNCTIONS
@@ -41,7 +41,7 @@ function fighterChoice() {
         compChar.innerHTML = charArr[0];
         compWeapon1.innerHTML = weapArr[0];
         compWeapon2.innerHTML = weapArr[1];
-        self++;
+        yourSelf++;
     }
     charSelect.style.visibility = "hidden";
 }
@@ -60,7 +60,7 @@ function compDamage() {
 }
 
 function compReturn() {
-    if (self == 0){
+    if (yourSelf == 0){
         compChar.innerHTML = charArr[1];
     } else {
         compChar.innerHTML = charArr[0];
