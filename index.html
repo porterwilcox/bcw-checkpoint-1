@@ -16,24 +16,34 @@
 <body>
     <div class="container-fluid">
         <div class="row char-sel">
-            <div class="col-sm-12 sel-pos"><select name="char-sel" id="character-selection">
-                <option value="" disabled selected>CHOOSE YOUR FIGHTER!</option>
-                <option value="ninja">ninja</option>
-                <option value="spy">spy</option>
-            </select></div>
+            <div class="col-sm-12 sel-pos">
+                <select name="char-sel" id="character-selection">
+                    <option value="" disabled selected>CHOOSE YOUR FIGHTER!</option>
+                    <option value="ninja">ninja</option>
+                    <option value="spy">spy</option>
+                </select>
+            </div>
         </div>
         <div class="row both-char-pos">
             <div class="col-sm-6 char-pos">
-                    <div class="your-char"></div>
+                <div class="your-weapons">
+                    <div id="your-weapon-1"></div>
+                    <div id="your-weapon-2"></div>
+                </div>
+                <div class="your-char"></div>
             </div>
             <div class="col-sm-6 char-pos">
-                    <div class="comp-char"></div>
+                <div class="comp-weapons">
+                    <div id="comp-weapon-1"></div>
+                    <div id="comp-weapon-2"></div>
+                </div>
+                <div class="comp-char"></div>
             </div>
         </div>
     </div>
 
 
-<script src="assets/scripty.js"></script>
+    <script src="assets/scripty.js"></script>
 </body>
 
 </html>

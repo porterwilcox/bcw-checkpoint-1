@@ -32,6 +32,7 @@
 
 .char-pos {
     display: flex;
+    flex-flow: wrap column;
     align-items: center;
     justify-content: center;
 }
@@ -46,12 +47,42 @@
     border-radius: 5%;
 }
 
+.weap-icon {
+    font-size: 5em;
+}
+
+.your-weapons, .comp-weapons {
+    width: 25vw;
+    padding-bottom: 1em;
+    display: flex;
+    flex-flow: wrap row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
 
 
 /* MOBILE */
-@media (pointer: coarse) and (hover: none) {
-    
+@media (pointer: coarse) and (hover: none) {    
+    .both-char-pos {
+        flex-flow: wrap column-reverse;
+    }    
     .char-icon {
         font-size: 10em;
+    }
+    .char-pos {
+        flex-flow: wrap row-reverse;
+    }
+
+    .weap-icon {
+        font-size: 3em;
+        padding-left: .5em;
+    }
+
+    .your-weapons, .comp-weapons {
+        height: 25vh;
+        width: fit-content;
+        padding-bottom: 0;
+        flex-flow: wrap column;
     }
 }
