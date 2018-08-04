@@ -24,6 +24,7 @@ let compHealth = 100;
 let yourHealth = 100;
 let yourSelf = 0;
 let bringCompBack;
+let compAttack;
 
 //FUNCTIONS
 function fighterChoice() {
@@ -47,23 +48,105 @@ function fighterChoice() {
 }
 
 function compDamage() {
-    if (this == yourWeapon1){
+    if (compHealth <= 0) {
+        compWeapons.style.visibility = "hidden";
+        compChar.innerHTML = `<img class="splatter" src="assets/images/splatter.png" alt="splatter">`;
+        return
+    }
+    else if(yourHealth <= 0) {
+        yourWeapons.style.visibility = "hidden";
+        yourChar.innerHTML = `<img class="splatter" src="assets/images/splatter.png" alt="splatter">`;
+        return
+    }
+    else if (this == yourWeapon1) {
         compHealth -= yourWeapon1Damage;
-        compChar.innerHTML = `<span style="font-size: 15em"> ${compHealth}</span>`;
-        bringCompBack = setTimeout(compReturn, 150);
-    } 
-    else if (this == yourWeapon2){
+        if (compHealth > 0) {
+            compChar.innerHTML = `<span class="damage-flash">${compHealth}</span>`;
+        } else {
+            compChar.innerHTML = `<span class="damage-flash">0</span>`;
+        }
+        bringCompBack = setTimeout(compReturn, 250);
+        compAttack = setTimeout(yourDamage, Math.floor((Math.random() * 750) + 150));
+    }
+    else if (this == yourWeapon2) {
         compHealth -= yourWeapon2Damage;
-        compChar.innerHTML = `<span style="font-size: 15em"> ${compHealth}</span>`;
-        bringCompBack = setTimeout(compReturn, 150);
-    } 
+        if (compHealth > 0) {
+            compChar.innerHTML = `<span class="damage-flash">${compHealth}</span>`;
+        } else {
+            compChar.innerHTML = `<span class="damage-flash">0</span>`;
+        }
+        bringCompBack = setTimeout(compReturn, 250);
+        compAttack = setTimeout(yourDamage, Math.floor((Math.random() * 750) + 150));
+    }
 }
 
 function compReturn() {
-    if (yourSelf == 0){
-        compChar.innerHTML = charArr[1];
+    if (yourSelf == 0) {
+        if (compHealth > 50) {
+            compChar.innerHTML = charArr[1];
+        }
+        else if (compHealth > 15) {
+            compChar.innerHTML = '<i class="fas fa-user-secret char-icon yellow-spy"></i>';
+        }
+        else {
+            compChar.innerHTML = '<i class="fas fa-user-secret char-icon red-spy"></i>';
+        }
     } else {
-        compChar.innerHTML = charArr[0];
+        if (compHealth > 50) {
+            compChar.innerHTML = charArr[0];
+        }
+        else if (compHealth > 15) {
+            compChar.innerHTML = '<i class="fas fa-user-ninja char-icon yellow-ninja"></i>';
+        }
+        else {
+            compChar.innerHTML = '<i class="fas fa-user-ninja char-icon red-ninja"></i>';
+        }
+    }
+}
+
+function yourDamage() {
+    let compPick = Math.floor(Math.random() * 4);
+    if (compPick <= 1) {
+        yourHealth -= compWeapon1Damage;
+        if (yourHealth > 0) {
+            yourChar.innerHTML = `<span class="damage-flash">${yourHealth}</span>`;
+        } else {
+            yourChar.innerHTML = `<span class="damage-flash">0</span>`;
+        }
+        bringCompBack = setTimeout(yourReturn, 250);
+    }
+    else {
+        yourHealth -= compWeapon2Damage;
+        if (yourHealth > 0) {
+            yourChar.innerHTML = `<span class="damage-flash">${yourHealth}</span>`;
+        } else {
+            yourChar.innerHTML = `<span class="damage-flash">0</span>`;
+        }
+        bringCompBack = setTimeout(yourReturn, 250);
+    }
+}
+
+function yourReturn() {
+    if (yourSelf == 0) {
+        if (yourHealth > 50) {
+            yourChar.innerHTML = charArr[0];
+        }
+        else if (yourHealth > 15) {
+            yourChar.innerHTML = '<i class="fas fa-user-ninja char-icon yellow-ninja"></i>';
+        }
+        else {
+            yourChar.innerHTML = '<i class="fas fa-user-ninja char-icon red-ninja"></i>';
+        }
+    } else {
+        if (yourHealth > 50) {
+            yourChar.innerHTML = charArr[1];
+        }
+        else if (yourHealth > 15) {
+            yourChar.innerHTML = '<i class="fas fa-user-secret char-icon yellow-spy"></i>';
+        }
+        else {
+            yourChar.innerHTML = '<i class="fas fa-user-secret char-icon red-spy"></i>';
+        }
     }
 }
 

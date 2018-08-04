@@ -41,10 +41,16 @@
     font-size: 25em;
 }
 
-.ninja {
-    background-color: black;
-    color: whitesmoke;
-    border-radius: 5%;
+.ninja, .spy {
+    color: black;
+}
+
+.yellow-ninja, .yellow-spy {
+    color: rgb(233, 233, 58);
+}
+
+.red-ninja, .red-spy {
+    color: red;
 }
 
 .weap-icon {
@@ -60,6 +66,15 @@
     align-items: flex-start;
 }
 
+.damage-flash {
+    font-size: 15em;
+}
+
+.splatter {
+    max-width: 30vw;
+    height: auto;
+}
+
 
 
 /* MOBILE */
@@ -73,16 +88,17 @@
     .char-pos {
         flex-flow: wrap row-reverse;
     }
-
     .weap-icon {
         font-size: 3em;
         padding-left: .5em;
     }
-
     .your-weapons, .comp-weapons {
         height: 25vh;
         width: fit-content;
         padding-bottom: 0;
         flex-flow: wrap column;
+    }
+    .damage-flash {
+        font-size: 5em;
     }
 }
