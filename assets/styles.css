@@ -66,6 +66,10 @@
     align-items: flex-start;
 }
 
+.comp-weapons {
+    visibility: hidden;
+}
+
 .chop, .jab {
     color: #CC8443;
 }
@@ -99,18 +103,33 @@
     visibility: hidden;
 }
 
+.healths {
+    display: flex;
+    flex-flow: wrap column;
+    height: 35vh;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    position: relative;
+    right: 5em;
+}
+
 .apple {
     font-size: 5em;
-    position: relative;
-    right: .5em;
     color: #5EBD3E;
 }
 
 .old-apple {
     font-size: 5em;
-    position: relative;
-    right: .5em;
     color: rgb(131, 153, 103); 
+}
+
+.shield {
+    font-size: 5em;
+}
+
+.shield-on-1 {
+    font-size: 5em;
+    color: gold;
 }
 
 /* MOBILE */
@@ -142,13 +161,21 @@
         position: relative;
         left: .5em;
     }
+    .healths {
+        right: 1em;
+        height: 25vh;
+    }
     .apple {
         font-size: 3em;
-        padding-right: .5em;
     }
     .old-apple {
         color: rgb(131, 153, 103); 
         font-size: 3em;
-        padding-right: .5em;
+    }
+    .shield {
+        font-size: 3em;
+    }
+    .shield-on-1 {
+        font-size: 3em;
     }
 }

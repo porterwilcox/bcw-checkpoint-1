@@ -8,7 +8,8 @@ let weapArr = [
     '<i class="fas fa-pen weap-icon pen"></i>', '<i class="fas fa-paperclip weap-icon paper-clip"></i>'
 ];
 let healthArr = [
-    '<i class="fas fa-apple-alt apple"></i>'
+    '<i class="fas fa-apple-alt apple"></i>',
+    '<i class="fas fa-shield-alt shield"></i>'
 ]
 let charSelect = document.getElementById('character-selection');
 let yourChar = document.querySelector('.your-char');
@@ -23,6 +24,10 @@ let yourApple = document.querySelector('.your-apple');
 let yourAppleInt = 0;
 let compApple = document.querySelector('.comp-apple');
 let compAppleInt = 0;
+let yourShield = document.querySelector('.your-shield');
+let yourShieldInt = 0;
+let compShield = document.querySelector('.comp-shield');
+let compShieldInt = 0;
 let restart = document.querySelector('.restart');
 let yourWeapon1Damage = 5;
 let yourWeapon2Damage = 10;
@@ -41,19 +46,23 @@ function fighterChoice() {
         yourWeapon1.innerHTML = weapArr[0];
         yourWeapon2.innerHTML = weapArr[1];
         yourApple.innerHTML = healthArr[0];
+        yourShield.innerHTML = healthArr[1];
         compChar.innerHTML = charArr[1];
         compWeapon1.innerHTML = weapArr[2];
         compWeapon2.innerHTML = weapArr[3];
         compApple.innerHTML = healthArr[0];
+        compShield.innerHTML = healthArr[1];
     } else {
         yourChar.innerHTML = charArr[1];
         yourWeapon1.innerHTML = weapArr[2];
         yourWeapon2.innerHTML = weapArr[3];
         yourApple.innerHTML = healthArr[0];
+        yourShield.innerHTML = healthArr[1];
         compChar.innerHTML = charArr[0];
         compWeapon1.innerHTML = weapArr[0];
         compWeapon2.innerHTML = weapArr[1];
         compApple.innerHTML = healthArr[0];
+        compShield.innerHTML = healthArr[1];
         yourSelf++;
     }
     charSelect.style.visibility = "hidden";
@@ -64,6 +73,7 @@ function compDamage() {
         restart.style.visibility = "visible";
         compWeapons.style.visibility = "hidden";
         compApple.style.visibility = "hidden";
+        compShield.style.visibility = "hidden";
         compChar.innerHTML = `<img class="splatter" src="assets/images/splatter.png" alt="splatter">`;
         return
     }
@@ -71,15 +81,44 @@ function compDamage() {
         restart.style.visibility = "visible";
         yourWeapons.style.visibility = "hidden";
         yourApple.style.visibility = "hidden";
+        yourShield.style.visibility = "hidden";
         yourChar.innerHTML = `<img class="splatter" src="assets/images/splatter.png" alt="splatter">`;
         return
+    }
+    else if (this == yourWeapon1 && compShieldInt >0 && compShieldInt <4) {
+        compShieldInt++;
+        compHealth -= (yourWeapon1Damage/2);
+        if (compHealth > 0) {
+            compChar.innerHTML = `<span class="damage-flash">${compHealth}</span>`;
+        } else {
+            compChar.innerHTML = `<span class="damage-flash">1</span>`;
+        }
+        if (compShieldInt == 4){
+            compShield.style.visibility = 'hidden';
+        }
+        bringBack = setTimeout(compReturn, 250);
+        compAttack = setTimeout(yourDamage, Math.floor((Math.random() * 750) + 150));
+    }
+    else if (this == yourWeapon2 && compShieldInt >0 && compShieldInt <4) {
+        compShieldInt++;
+        compHealth -= (yourWeapon2Damage/2);
+        if (compHealth > 0) {
+            compChar.innerHTML = `<span class="damage-flash">${compHealth}</span>`;
+        } else {
+            compChar.innerHTML = `<span class="damage-flash">1</span>`;
+        }
+        if (compShieldInt == 4){
+            compShield.style.visibility = 'hidden';
+        }
+        bringBack = setTimeout(compReturn, 250);
+        compAttack = setTimeout(yourDamage, Math.floor((Math.random() * 750) + 150));
     }
     else if (this == yourWeapon1) {
         compHealth -= yourWeapon1Damage;
         if (compHealth > 0) {
             compChar.innerHTML = `<span class="damage-flash">${compHealth}</span>`;
         } else {
-            compChar.innerHTML = `<span class="damage-flash">0</span>`;
+            compChar.innerHTML = `<span class="damage-flash">1</span>`;
         }
         bringBack = setTimeout(compReturn, 250);
         compAttack = setTimeout(yourDamage, Math.floor((Math.random() * 750) + 150));
@@ -89,7 +128,7 @@ function compDamage() {
         if (compHealth > 0) {
             compChar.innerHTML = `<span class="damage-flash">${compHealth}</span>`;
         } else {
-            compChar.innerHTML = `<span class="damage-flash">0</span>`;
+            compChar.innerHTML = `<span class="damage-flash">1</span>`;
         }
         bringBack = setTimeout(compReturn, 250);
         compAttack = setTimeout(yourDamage, Math.floor((Math.random() * 750) + 150));
@@ -143,14 +182,51 @@ function compHealthRegen() {
     }
 }
 
+function compShieldOn() {
+    compShieldInt++;
+    compShield.innerHTML = `'<i class="fas fa-shield-alt shield-on-1"></i>'`;
+}
+
 function yourDamage() {
+    if (compShieldInt == 0){
+        let compShieldYN = Math.floor(Math.random()*5);
+        if (compShieldYN == 3){
+            compShieldOn();
+            return;
+        }        
+    }
     let compPick = Math.floor(Math.random() * 9);
+    if(yourShieldInt >=1 && yourShieldInt <= 3){
+        yourShieldInt++;
+        if (compPick <= 2) {
+            yourHealth -= (compWeapon1Damage/2);
+            if (yourHealth > 0) {
+                yourChar.innerHTML = `<span class="damage-flash">${yourHealth}</span>`;
+            } else {
+                yourChar.innerHTML = `<span class="damage-flash">1</span>`;
+            }
+            bringBack = setTimeout(yourReturn, 250);
+        }
+        else if (compPick <= 7) {
+            yourHealth -= (compWeapon2Damage/2);
+            if (yourHealth > 0) {
+                yourChar.innerHTML = `<span class="damage-flash">${yourHealth}</span>`;
+            } else {
+                yourChar.innerHTML = `<span class="damage-flash">1</span>`;
+            }
+            bringBack = setTimeout(yourReturn, 250);
+        }
+        return
+    } 
+    else if (yourShieldInt == 4){
+        yourShield.style.visibility = "hidden";
+    }    
     if (compPick <= 2) {
         yourHealth -= compWeapon1Damage;
         if (yourHealth > 0) {
             yourChar.innerHTML = `<span class="damage-flash">${yourHealth}</span>`;
         } else {
-            yourChar.innerHTML = `<span class="damage-flash">0</span>`;
+            yourChar.innerHTML = `<span class="damage-flash">1</span>`;
         }
         bringBack = setTimeout(yourReturn, 250);
     }
@@ -159,7 +235,7 @@ function yourDamage() {
         if (yourHealth > 0) {
             yourChar.innerHTML = `<span class="damage-flash">${yourHealth}</span>`;
         } else {
-            yourChar.innerHTML = `<span class="damage-flash">0</span>`;
+            yourChar.innerHTML = `<span class="damage-flash">1</span>`;
         }
         bringBack = setTimeout(yourReturn, 250);
     }
@@ -225,6 +301,12 @@ function yourHealthRegen() {
     }
 }
 
+function yourShieldOn() {
+    yourShieldInt++;
+    yourShield.innerHTML = `'<i class="fas fa-shield-alt shield-on-1"></i>'`;
+    compAttack = setTimeout(yourDamage, Math.floor((Math.random() * 250) + 500));
+}
+
 function restartPage() {
     location.reload();
 }
@@ -235,3 +317,4 @@ yourWeapon1.addEventListener('click', compDamage);
 yourWeapon2.addEventListener('click', compDamage);
 restart.addEventListener('click', restartPage);
 yourApple.addEventListener('click', yourHealthRegen);
+yourShield.addEventListener('click', yourShieldOn);
