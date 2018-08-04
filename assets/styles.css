@@ -66,8 +66,25 @@
     align-items: flex-start;
 }
 
+.chop, .jab {
+    color: #CC8443;
+}
+
+.jab {
+    transform: rotateY(180deg);
+}
+
+.pen {
+    color: #010048;
+}
+
+.paper-clip {
+    color: #8c8d8f;
+}
+
 .damage-flash {
-    font-size: 15em;
+    font-size: 18em;
+    height: 100%;
 }
 
 .splatter {
@@ -75,7 +92,26 @@
     height: auto;
 }
 
+.restart {
+    font-size: 3em;
+    position: relative;
+    left: 8em;
+    visibility: hidden;
+}
 
+.apple {
+    font-size: 5em;
+    position: relative;
+    right: .5em;
+    color: #5EBD3E;
+}
+
+.old-apple {
+    font-size: 5em;
+    position: relative;
+    right: .5em;
+    color: rgb(131, 153, 103); 
+}
 
 /* MOBILE */
 @media (pointer: coarse) and (hover: none) {    
@@ -100,5 +136,19 @@
     }
     .damage-flash {
         font-size: 5em;
+    }
+    .restart {
+        font-size: 2em;
+        position: relative;
+        left: .5em;
+    }
+    .apple {
+        font-size: 3em;
+        padding-right: .5em;
+    }
+    .old-apple {
+        color: rgb(131, 153, 103); 
+        font-size: 3em;
+        padding-right: .5em;
     }
 }
