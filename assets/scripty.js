@@ -22,6 +22,8 @@ let yourWeapon2 = document.getElementById('your-weapon-2');
 let yourWeapon3 = document.getElementById('your-weapon-3');
 let compWeapon1 = document.getElementById('comp-weapon-1');
 let compWeapon2 = document.getElementById('comp-weapon-2');
+let healthsAll = document.querySelector('.health-all');
+let attacks = document.querySelector('.attacks');
 let yourApple = document.querySelector('.your-apple');
 let yourAppleInt = 0;
 let compApple = document.querySelector('.comp-apple');
@@ -46,6 +48,8 @@ let compAttack;
 
 //FUNCTIONS
 function fighterChoice() {
+    healthsAll.style.visibility = "visible";
+    attacks.style.visibility = 'visible';
     if (this.value == "ninja") {
         yourChar.innerHTML = charArr[0];
         yourWeapon1.innerHTML = weapArr[0];
@@ -86,6 +90,8 @@ function compDamage() {
     }
     else if (yourHealth <= 0) {
         restart.style.visibility = "visible";
+        attacks.style.visibility = "hidden";
+        healthsAll.style.visibility = "hidden";
         yourWeapons.style.visibility = "hidden";
         yourApple.style.visibility = "hidden";
         yourShield.style.visibility = "hidden";

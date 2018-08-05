@@ -33,6 +33,7 @@
 }
 .char-icon {
     font-size: 25em;
+    padding-top: 5px;
 }
 .ninja, .spy {
     color: black;
@@ -45,15 +46,33 @@
 }
 .weap-icon {
     font-size: 5em;
+    padding: 0 5px;
+}
+.your-attack {
+    position: relative;
+    right: 3em;
+    top: 2.5em;
 }
 .your-weapons {
     display: flex;
     flex-flow: wrap column;
     height: 50vh;
-    width: 25em;
+    width: fit-content;
     justify-content: space-evenly;
     align-items: flex-start;
     position: relative;
+    background-color: rgb(159, 180, 236);
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+}
+.attacks {
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    color: white;
+    background-color: blue;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
 }
 .comp-weapons {
     visibility: hidden;
@@ -72,15 +91,23 @@
     width: auto;
 }
 .pen {
-    color: #010048;
+    color: rgb(136, 1, 1);
     /* transform: rotateZ(225deg); */
 }
 .magnify-glass {
     color: #8c8d8f;
 }
+.bomb {
+    color: black;
+}
+.keep-space {
+    height: 25em;
+    width: 20em;
+    display: flex;
+    justify-content: flex-start;
+}
 .damage-flash {
     font-size: 18em;
-    height: 100%;
 }
 .splatter {
     max-width: 30vw;
@@ -92,9 +119,33 @@
     left: 8em;
     visibility: hidden;
 }
-.healths {
+.health-all {
+    display: flex;
+    flex-flow: wrap column;
+    visibility: hidden;
     width: 25vw;
-    padding-bottom: 1em;
+}
+.power-ups {
+    display: flex;
+    justify-content: center;
+    color: white;
+    background-color: green;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+}
+.healths {
+    padding: 5px 0;
+    display: flex;
+    flex-flow: wrap row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    background-color: rgb(193, 224, 193);
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+.comp-healths {
+    width: 25vw;
+    padding-bottom: 5px;
     display: flex;
     flex-flow: wrap row;
     justify-content: space-evenly;
@@ -122,6 +173,7 @@
     }    
     .char-icon {
         font-size: 10em;
+        padding-left: 10px;
     }
     .char-pos {
         flex-flow: wrap row;
@@ -130,11 +182,12 @@
         font-size: 3em;
         padding-left: .5em;
     }
-    .healths {
+    .healths, .comp-healths {
         height: 25vh;
-        width: fit-content;
+        width: 5em;
         padding-bottom: 0;
         flex-flow: wrap column;
+        align-items: center;
     }
     .damage-flash {
         font-size: 5em;
