@@ -1,11 +1,9 @@
 /* * {
     outline: 1px solid red;
 } */
-
 .container-fluid {
     height: 100vh;
 }
-
 .sel-pos {
     width: 100vw;
     height: 10vh;
@@ -13,7 +11,6 @@
     justify-content: center;
     align-items: flex-end;
 }
-
 #character-selection {
     height: fit-content;
     border: none;
@@ -21,7 +18,6 @@
     color: white;
     border-radius: 6%;
 }
-
 .both-char-pos {
     height: 90vh;
     width: 100vw;
@@ -29,35 +25,74 @@
     align-items: space-evenly;
     justify-content: space-evenly;
 }
-
 .char-pos {
     display: flex;
     flex-flow: wrap column;
     align-items: center;
     justify-content: center;
 }
-
 .char-icon {
     font-size: 25em;
 }
-
 .ninja, .spy {
     color: black;
 }
-
 .yellow-ninja, .yellow-spy {
     color: rgb(233, 233, 58);
 }
-
 .red-ninja, .red-spy {
     color: red;
 }
-
 .weap-icon {
     font-size: 5em;
 }
-
-.your-weapons, .comp-weapons {
+.your-weapons {
+    display: flex;
+    flex-flow: wrap column;
+    height: 50vh;
+    width: 25em;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    position: relative;
+}
+.comp-weapons {
+    visibility: hidden;
+}
+.your-weapon-1, .your-weapon-2, .your-weapon-3 {
+    position: absolute;
+}
+.chop, .jab {
+    color: #CC8443;
+}
+.jab {
+    transform: rotateY(180deg);
+}
+.ninja-star {
+    height: 6em;
+    width: auto;
+}
+.pen {
+    color: #010048;
+    /* transform: rotateZ(225deg); */
+}
+.magnify-glass {
+    color: #8c8d8f;
+}
+.damage-flash {
+    font-size: 18em;
+    height: 100%;
+}
+.splatter {
+    max-width: 30vw;
+    height: auto;
+}
+.restart {
+    font-size: 3em;
+    position: relative;
+    left: 8em;
+    visibility: hidden;
+}
+.healths {
     width: 25vw;
     padding-bottom: 1em;
     display: flex;
@@ -65,73 +100,21 @@
     justify-content: space-evenly;
     align-items: flex-start;
 }
-
-.comp-weapons {
-    visibility: hidden;
-}
-
-.chop, .jab {
-    color: #CC8443;
-}
-
-.jab {
-    transform: rotateY(180deg);
-}
-
-.pen {
-    color: #010048;
-}
-
-.paper-clip {
-    color: #8c8d8f;
-}
-
-.damage-flash {
-    font-size: 18em;
-    height: 100%;
-}
-
-.splatter {
-    max-width: 30vw;
-    height: auto;
-}
-
-.restart {
-    font-size: 3em;
-    position: relative;
-    left: 8em;
-    visibility: hidden;
-}
-
-.healths {
-    display: flex;
-    flex-flow: wrap column;
-    height: 35vh;
-    justify-content: space-evenly;
-    align-items: flex-start;
-    position: relative;
-    right: 5em;
-}
-
 .apple {
     font-size: 5em;
     color: #5EBD3E;
 }
-
 .old-apple {
     font-size: 5em;
     color: rgb(131, 153, 103); 
 }
-
 .shield {
     font-size: 5em;
 }
-
 .shield-on-1 {
     font-size: 5em;
     color: gold;
 }
-
 /* MOBILE */
 @media (pointer: coarse) and (hover: none) {    
     .both-char-pos {
@@ -141,13 +124,13 @@
         font-size: 10em;
     }
     .char-pos {
-        flex-flow: wrap row-reverse;
+        flex-flow: wrap row;
     }
     .weap-icon {
         font-size: 3em;
         padding-left: .5em;
     }
-    .your-weapons, .comp-weapons {
+    .healths {
         height: 25vh;
         width: fit-content;
         padding-bottom: 0;
@@ -161,9 +144,24 @@
         position: relative;
         left: .5em;
     }
-    .healths {
+    .your-weapons {
         right: 1em;
+        width: fit-content;
         height: 25vh;
+    }
+    /* .pen {
+        transform: rotateZ(0deg);
+    } */
+    .jab {
+        position: relative;
+        left: .5em
+    }
+    .ninja-star {
+        height: 4em;
+        width: auto;
+        position: relative;
+        left: 1em;
+        transform: rotateZ(45deg);
     }
     .apple {
         font-size: 3em;
