@@ -123,7 +123,7 @@
     display: flex;
     flex-flow: wrap column;
     visibility: hidden;
-    width: 25vw;
+    width: 30vw;
 }
 .power-ups {
     display: flex;
@@ -144,7 +144,7 @@
     border-bottom-right-radius: 1em;
 }
 .comp-healths {
-    width: 25vw;
+    width: 30vw;
     padding-bottom: 5px;
     display: flex;
     flex-flow: wrap row;
@@ -165,6 +165,13 @@
 .shield-on-1 {
     font-size: 5em;
     color: gold;
+}
+.med-kit {
+    font-size: 5em;
+    color: whitesmoke;
+    background-color: red;
+    padding: 0 2px 2px;
+    border-radius: 5px;
 }
 /* MOBILE */
 @media (pointer: coarse) and (hover: none) {    

@@ -10,7 +10,8 @@ let weapArr = [
 ];
 let healthArr = [
     '<i class="fas fa-apple-alt apple"></i>',
-    '<i class="fas fa-shield-alt shield"></i>'
+    '<i class="fas fa-shield-alt shield"></i>',
+    '<i class="fas fa-medkit med-kit"></i>'
 ]
 let charSelect = document.getElementById('character-selection');
 let yourChar = document.querySelector('.your-char');
@@ -23,6 +24,7 @@ let yourWeapon3 = document.getElementById('your-weapon-3');
 let compWeapon1 = document.getElementById('comp-weapon-1');
 let compWeapon2 = document.getElementById('comp-weapon-2');
 let healthsAll = document.querySelector('.health-all');
+let compHealthsAll = document.querySelector('.comp-healths');
 let attacks = document.querySelector('.attacks');
 let yourApple = document.querySelector('.your-apple');
 let yourAppleInt = 0;
@@ -32,14 +34,17 @@ let yourShield = document.querySelector('.your-shield');
 let yourShieldInt = 0;
 let compShield = document.querySelector('.comp-shield');
 let compShieldInt = 0;
+let yourMedKit = document.querySelector('.your-med-kit');
+let compMedKit = document.querySelector('.comp-med-kit');
+let compMedKitInt = 0;
 let restart = document.querySelector('.restart');
-let yourWeapon1Damage = 6;
+let yourWeapon1Damage = 8;
 let yourWeapon2Damage = 10;
 let yourWeapon3Damage = 20;
 let yourWeapon3Int = 0;
 let compWeapon1Damage = 8;
-let compWeapon2Damage = 14;
-let compWeapon3Damage = 28;
+let compWeapon2Damage = 12;
+let compWeapon3Damage = 24;
 let compHealth = 100;
 let yourHealth = 100;
 let yourSelf = 0;
@@ -57,11 +62,13 @@ function fighterChoice() {
         yourWeapon3.innerHTML = weapArr[4];
         yourApple.innerHTML = healthArr[0];
         yourShield.innerHTML = healthArr[1];
+        yourMedKit.innerHTML = healthArr[2];
         compChar.innerHTML = charArr[1];
         compWeapon1.innerHTML = weapArr[2];
         compWeapon2.innerHTML = weapArr[3];
         compApple.innerHTML = healthArr[0];
         compShield.innerHTML = healthArr[1];
+        compMedKit.innerHTML = healthArr[2];
     } else {
         yourChar.innerHTML = charArr[1];
         yourWeapon1.innerHTML = weapArr[2];
@@ -69,11 +76,13 @@ function fighterChoice() {
         yourWeapon3.innerHTML = weapArr[5];
         yourApple.innerHTML = healthArr[0];
         yourShield.innerHTML = healthArr[1];
+        yourMedKit.innerHTML = healthArr[2];
         compChar.innerHTML = charArr[0];
         compWeapon1.innerHTML = weapArr[0];
         compWeapon2.innerHTML = weapArr[1];
         compApple.innerHTML = healthArr[0];
         compShield.innerHTML = healthArr[1];
+        compMedKit.innerHTML = healthArr[2];
         yourSelf++;
     }
     charSelect.style.visibility = "hidden";
@@ -83,8 +92,7 @@ function compDamage() {
     if (compHealth <= 0) {
         restart.style.visibility = "visible";
         compWeapons.style.visibility = "hidden";
-        compApple.style.visibility = "hidden";
-        compShield.style.visibility = "hidden";
+        compHealthsAll.style.visibility = "hidden";
         compChar.innerHTML = `<img class="splatter" src="assets/images/splatter.png" alt="splatter">`;
         return
     }
@@ -93,8 +101,6 @@ function compDamage() {
         attacks.style.visibility = "hidden";
         healthsAll.style.visibility = "hidden";
         yourWeapons.style.visibility = "hidden";
-        yourApple.style.visibility = "hidden";
-        yourShield.style.visibility = "hidden";
         yourChar.innerHTML = `<img class="splatter" src="assets/images/splatter.png" alt="splatter">`;
         return
     }
@@ -224,6 +230,43 @@ function compShieldOn() {
     compShield.innerHTML = `<i class="fas fa-shield-alt shield-on-1"></i>`;
 }
 
+function compMedKitUse() {
+    if (compHealth >= 25){
+    let compPick = Math.floor(Math.random()*4)
+    if (compPick == 3){
+        compMedKitInt++;
+        compHealth = 100;
+        compChar.innerHTML = `<span class="damage-flash">${compHealth}</span>`;
+        compMedKit.style.visibility = "hidden";
+        bringBack = setTimeout(compReturn, 250);
+        return;
+    }
+}
+    else if(compHealth > 10){
+        let compPick = Math.floor(Math.random()*3)
+        if (compPick == 1){
+            compMedKitInt++;
+            compHealth = 100;
+            compChar.innerHTML = `<span class="damage-flash">${compHealth}</span>`;
+            compMedKit.style.visibility = "hidden";
+            bringBack = setTimeout(compReturn, 250);
+            return;
+        }
+    }
+    else if(compHealth > 0){
+        let compPick = Math.floor(Math.random()*2)
+        if (compPick == 1){
+            compMedKitInt++;
+            compHealth = 100;
+            compChar.innerHTML = `<span class="damage-flash">${compHealth}</span>`;
+            compMedKit.style.visibility = "hidden";
+            bringBack = setTimeout(compReturn, 250);
+            return;
+        }
+    }
+    yourDamage();
+}
+
 function yourDamage() {
     if (compShieldInt == 0) {
         let compShieldYN = Math.floor(Math.random() * 5);
@@ -232,7 +275,14 @@ function yourDamage() {
             return;
         }
     }
-    let compPick = Math.floor(Math.random() * 10);
+    if (compHealth <= 50 && compMedKitInt == 0) {
+        let compMedKitYN = Math.floor(Math.random()*2)
+        if (compMedKitYN == 1){
+        compMedKitUse();
+        return;
+        }
+    }
+    let compPick = Math.floor(Math.random() * 12);
     if (yourShieldInt >= 1 && yourShieldInt <= 3) {
         yourShieldInt++;
         if (compPick <= 2) {
@@ -285,7 +335,7 @@ function yourDamage() {
         }
         bringBack = setTimeout(yourReturn, 250);
     }
-    else if (compPick > 9) {
+    else if (compPick == 8) {
         yourHealth -= compWeapon3Damage;
         if (yourHealth > 0) {
             yourChar.innerHTML = `<span class="damage-flash">${yourHealth}</span>`;
@@ -362,8 +412,16 @@ function yourShieldOn() {
     compAttack = setTimeout(yourDamage, Math.floor((Math.random() * 250) + 500));
 }
 
+function yourMedRegen() {
+   yourHealth = 100;
+    yourChar.innerHTML = `<span class="damage-flash">${yourHealth}</span>`;
+    yourMedKit.style.visibility = 'hidden';
+    bringBack = setTimeout(yourReturn, 250);
+    compAttack = setTimeout(yourDamage, Math.floor((Math.random() * 250) + 500));
+}
+
 function weapon3Constraint() {
-    if (yourWeapon3Int > 0){
+    if (yourWeapon3Int > 0) {
         yourWeapon3.style.visibility = "hidden";
     }
     yourWeapon3Int++;
@@ -396,5 +454,6 @@ yourWeapon3.addEventListener('click', weapon3Constraint);
 restart.addEventListener('click', restartPage);
 yourApple.addEventListener('click', yourHealthRegen);
 yourShield.addEventListener('click', yourShieldOn);
+yourMedKit.addEventListener('click', yourMedRegen);
 // yourWeapon1.addEventListener('click', anime);
 // yourWeapon2.addEventListener('click', anime);
