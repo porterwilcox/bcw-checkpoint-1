@@ -31,6 +31,10 @@
     align-items: center;
     justify-content: center;
 }
+.your-char {
+    padding-bottom: 3em;
+    overflow: hidden;
+}
 .char-icon {
     font-size: 25em;
     padding-top: 5px;
@@ -60,7 +64,6 @@
     width: fit-content;
     justify-content: space-evenly;
     align-items: flex-start;
-    position: relative;
     background-color: rgb(159, 180, 236);
     border-top-left-radius: 1em;
     border-top-right-radius: 1em;
@@ -76,9 +79,6 @@
 }
 .comp-weapons {
     visibility: hidden;
-}
-.your-weapon-1, .your-weapon-2, .your-weapon-3 {
-    position: absolute;
 }
 .chop, .jab {
     color: #CC8443;
@@ -102,9 +102,9 @@
 }
 .keep-space {
     height: 25em;
-    width: 20em;
+    width: 25em;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
 }
 .damage-flash {
     font-size: 18em;
@@ -179,48 +179,63 @@
         flex-flow: wrap column-reverse;
     }    
     .char-icon {
-        font-size: 10em;
-        padding-left: 10px;
+        font-size: 11em;
+        /* padding-left: 10px; */
     }
     .char-pos {
         flex-flow: wrap row;
+    }
+    .your-char {
+        padding-bottom: 0;
+        width: fit-content;
     }
     .weap-icon {
         font-size: 3em;
         padding-left: .5em;
     }
+    .health-all {
+        width: fit-content;
+        position: relative;
+        right: .5em;
+    }
     .healths, .comp-healths {
-        height: 25vh;
-        width: 5em;
+        height: 30vh;
+        width: fit-content;
         padding-bottom: 0;
         flex-flow: wrap column;
         align-items: center;
     }
+    .comp-healths {
+        position: relative;
+        right: .5em;
+    }
     .damage-flash {
         font-size: 5em;
+    }
+    .keep-space {
+        height: fit-content;
+        width: 50vw;
     }
     .restart {
         font-size: 2em;
         position: relative;
         left: .5em;
     }
-    .your-weapons {
-        right: 1em;
-        width: fit-content;
-        height: 25vh;
+    .your-attack {
+        right: 0;
+        top: 0;
+        left: .5em;
     }
-    /* .pen {
-        transform: rotateZ(0deg);
-    } */
-    .jab {
-        position: relative;
-        left: .5em
+    .your-weapons {        
+        width: fit-content;
+        height: 30vh;
+    }
+    .weap-icon {
+        padding: 0 3px;
     }
     .ninja-star {
         height: 4em;
         width: auto;
-        position: relative;
-        left: 1em;
         transform: rotateZ(45deg);
     }
     .apple {
@@ -235,5 +250,11 @@
     }
     .shield-on-1 {
         font-size: 3em;
+    }
+    .med-kit {
+        font-size: 3em;
+    }
+    .power-ups {
+        font-size: .7em;
     }
 }
