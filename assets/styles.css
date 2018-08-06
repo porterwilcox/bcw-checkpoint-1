@@ -32,7 +32,7 @@
     justify-content: center;
 }
 .your-char {
-    padding-bottom: 3em;
+   padding: 3em 0;
     overflow: hidden;
 }
 .char-icon {
